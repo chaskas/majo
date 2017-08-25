@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-header clearfix">
+    <h4 class="float-left">Proveedores</h4>
+    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Nuevo', new_supplier_path %></button>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Contacto</th>
+          <th>Fono</th>
+          <th class="text-center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.contact %></td>
+          <td><%= supplier.phone %></td>
+          <td class="text-center">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-pencil"></span>'.html_safe, edit_supplier_path(supplier) %></button>
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-x"></span>'.html_safe, supplier, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

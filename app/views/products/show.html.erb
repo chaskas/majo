@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @product.sale_price %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
+
+
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-header clearfix">
+    <h4 class="float-left"><%= @product.name %></h4>
+    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Atrás', products_path %></button>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Receta</h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Ingrediente</th>
+          <th class="text-center">Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.recipes.each do |recipe| %>
+        <tr>
+          <td><%= recipe.ingredient.name %></td>
+          <td class="text-center"><%= recipe.quantity %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

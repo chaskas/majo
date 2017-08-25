@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-header clearfix">
+    <h4 class="float-left">Productos</h4>
+    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Nuevo', new_product_path %></button>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="text-center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td class="text-center">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-zoom-in"></span>'.html_safe, product %></button>
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-pencil"></span>'.html_safe, edit_product_path(product) %></button>
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-x"></span>'.html_safe, product, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

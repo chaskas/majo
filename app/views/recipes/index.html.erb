@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-header clearfix">
+    <h4 class="float-left">Recetas</h4>
+    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Nuevo', new_recipe_path %></button>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Ingrediente</th>
+          <th>Cantidad</th>
+          <th class="text-center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+        <tr>
+          <td><%= recipe.product.name %></td>
+          <td><%= recipe.ingredient.name %></td>
+          <td><%= recipe.quantity %></td>
+          <td class="text-center">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-pencil"></span>'.html_safe, edit_recipe_path(recipe) %></button>
+              <button type="button" class="btn btn-outline-primary btn-sm"><%= link_to '<span class="oi oi-x"></span>'.html_safe, recipe, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

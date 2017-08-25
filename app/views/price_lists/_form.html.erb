@@ -1,0 +1,32 @@
+<%= form_with(model: price_list, local: true) do |form| %>
+  <% if price_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(price_list.errors.count, "error") %> prohibited this price_list from being saved:</h2>
+
+      <ul>
+      <% price_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, id: :price_list_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingredient_id %>
+    <%= collection_select(:price_list, :ingredient_id, Ingredient.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :supplier_id %>
+    <%= collection_select(:price_list, :supplier_id, Supplier.all, :id, :name) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
