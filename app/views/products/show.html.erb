@@ -1,26 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Sale price:</strong>
-  <%= @product.sale_price %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-
-
-<p id="notice"><%= notice %></p>
-
 <div class="card">
   <div class="card-header clearfix">
     <h4 class="float-left"><%= @product.name %></h4>
-    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Atrás', products_path %></button>
+    <button type="button" class="btn btn-outline-primary btn-sm float-right"><%= link_to 'Editar', edit_product_path(@product) %></button>
+    &nbsp;
+    <%= link_to 'Atrás', products_path, class: 'card-link float-right' %>
   </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Precio Venta: $7900</li>
+  </ul>
   <div class="card-body">
     <h4 class="card-title">Receta</h4>
     <table class="table table-sm">
@@ -28,6 +17,9 @@
         <tr>
           <th>Ingrediente</th>
           <th class="text-center">Cantidad</th>
+          <th class="text-center">Unidad</th>
+          <th class="text-center">Unitario</th>
+          <th class="text-center">Costo</th>
         </tr>
       </thead>
       <tbody>
@@ -35,8 +27,17 @@
         <tr>
           <td><%= recipe.ingredient.name %></td>
           <td class="text-center"><%= recipe.quantity %></td>
+          <td class="text-center"><%= recipe.ingredient.unit.name %></td>
+          <td class="text-center"><%= recipe.ingredient.last_price.price %></td>
+          <td class="text-center"><%= recipe.ingredient.last_price.price * recipe.quantity %></td>
         </tr>
+        <% @total += (recipe.ingredient.last_price.price * recipe.quantity) %>
         <% end %>
+        <tr><td colspan="5"></td></tr>
+        <tr>
+          <td class="text-right" colspan="4">Costo Total: </td>
+          <td class="text-center"><%= @total %></td>
+        </tr>
       </tbody>
     </table>
   </div>
